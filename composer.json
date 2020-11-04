@@ -11,7 +11,6 @@
   "email": "support@webspellchecker.net"
   },
   "require": {
-    "php": "~7.2.0",
     "magento/framework": "~100.0.4"
   },
   "autoload": {
