@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="web_spell_checker_wproofreader" translate="label" sortOrder="200">
+            <label>WebSpellChecker WProofreader</label>
+        </tab>
+        <section id="webspellcheker_wproofreader" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>WebSpellChecker WProofreader</label>
+            <tab>web_spell_checker_wproofreader</tab>
+            <resource>WebSpellChecker_WProofreader::settings</resource>
+            <group id="settings" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Configuration</label>
+                <field id="is_enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Is Enable Module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="license_key" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>License Key</label>
+                    <depends>
+                        <field id="is_enable">1</field>
+                    </depends>
+                    <comment><![CDATA[Upgrade to WProofreader Pro to access the grammar/style checking capabilities and lift the usage limits for your websites.<br/><a href="https://webspellchecker.com/free-trial/" target="_blank">Give it a try for 14-days free</a>]]></comment>
+                </field>
+                <field id="default_language" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Default Language</label>
+                    <depends>
+                        <field id="is_enable">1</field>
+                    </depends>
+                    <frontend_model>WebSpellChecker\WProofreader\Block\Adminhtml\System\Config\Form\Field\DefaultLanguage</frontend_model>
+                </field>
+                <field id="is_enable_badge" translate="label" type="select" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Is Enable Badge</label>
+                    <depends>
+                        <field id="is_enable">1</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

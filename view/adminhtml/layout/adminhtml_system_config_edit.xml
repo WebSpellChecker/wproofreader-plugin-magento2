@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script src="https://svc.webspellchecker.net/spellcheck31/wscbundle/wscbundle.js" src_type="url"/>
+    </head>
+    <body>
+        <referenceContainer name="footer">
+            <block class="WebSpellChecker\WProofreader\Block\InitScript" name="spellchecker.script" template="WebSpellChecker_WProofreader::init-script.phtml"/>
+        </referenceContainer>
+        <referenceBlock name="default.spellchecker.script" remove="true"/>
+    </body>
+</page>

@@ -1,0 +1,62 @@
+<?php
+/**
+ * @var $block \WebSpellChecker\WProofreader\Block\InitScript
+ */
+if(!$block->isEnable()) return '';
+?>
+<script>
+require([
+    'jquery'
+    ], function($){
+
+        function getHtml (result) {
+            var defaultLanguage = "<?= $block->getDefaultLanguage(); ?>"
+            var html = '<select class="select admin__control-select" ' +
+                'data-ui-id="adminhtml-system-config-form-field-defaultlanguage-0-select-groups-settings-fields-default-language-value"' +
+                'name="groups[settings][fields][default_language][value]" id="webspellcheker_wproofreader_settings_default_language">';
+
+            $.each(result.langList.ltr, function (code, label) {
+                if(defaultLanguage === code) {
+                    html += '<option selected="selected" value="' + code + '">'
+                } else {
+                    html += '<option value="' + code + '">'
+                }
+
+                html += label + '</option>';
+            });
+
+            html += '</select>';
+
+            return html;
+        }
+        $(document).ready(function(){
+            var AppInstance;
+            AppInstance = WEBSPELLCHECKER.initWebApi({
+                autoSearch: true,
+				appType:'magento2_plugin',
+                serviceProtocol: 'https',
+                serviceHost: 'svc.webspellchecker.net',
+                servicePath: 'spellcheck31/script/ssrv.cgi',
+                servicePort: '443',
+                enableGrammar: "<?= $block->isTrial(); ?>",
+                serviceId: "<?= $block->getLicenseKey(); ?>",
+                lang: "<?= $block->getDefaultLanguage(); ?>",
+                function(instance) {
+                    AppInstance = instance;
+                }
+            });
+            AppInstance.getInfo({
+                success: function (result) {
+                    var html = getHtml(result);
+                    $('#webspellcheker_wproofreader_settings_default_language').html(html);
+                },
+                error: function (e) {
+                   if(e.message){
+                       var message = '<strong>WProofreader:</strong> '+e.message;
+                       $('#webspellcheker_wproofreader_settings-link').prepend('<div style="color:red" class="error"><p>'+message+'.</p><p><a target="_blank" href="https://webspellchecker.com/contact-us/">Contact us</a> for technical assistance.</p></div>');
+                   }
+                }
+            });
+        });
+    });
+</script>

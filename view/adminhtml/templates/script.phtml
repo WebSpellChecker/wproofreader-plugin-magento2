@@ -1,0 +1,29 @@
+<?php
+/**
+ * @var $block \WebSpellChecker\WProofreader\Block\InitScript
+ */
+if(!$block->isEnable()) return '';
+?>
+<script>
+    var isEnableBadge = "<?= $block->isEnableBadge() === true ? 'true' : 'false'; ?>";
+    isEnableBadge = isEnableBadge === 'true' ? true : false;
+    var actionItems = ['addWord', 'ignoreAll', 'settings', 'toggle', 'proofreadDialog'];
+    if (isEnableBadge) {
+        actionItems = ['addWord', 'ignoreAll', 'settings', 'proofreadDialog'];
+    }
+
+    window.WEBSPELLCHECKER_CONFIG = {
+        autoSearch: true,
+	    appType:'magento2_plugin',
+        serviceProtocol: 'https',
+        serviceHost: 'svc.webspellchecker.net',
+        servicePath: 'spellcheck31/script/ssrv.cgi',
+        servicePort: '443',
+        enableGrammar: "<?= $block->isTrial(); ?>",
+        settingsSections: [ 'options', 'languages', 'dictionaries', 'about' ],
+        serviceId: "<?= $block->getLicenseKey(); ?>",
+        lang: "<?= $block->getDefaultLanguage(); ?>",
+        enableBadgeButton: isEnableBadge,
+        actionItems: actionItems
+    };
+</script>

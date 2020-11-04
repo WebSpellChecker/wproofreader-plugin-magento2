@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="WebSpellChecker_WProofreader::webspellchecker_wproofreader" title="WProofreader" module="WebSpellChecker_WProofreader" sortOrder="250" resource="WebSpellChecker_WProofreader::webspellchecker_wproofreader"/>
+        <add id="WebSpellChecker_WProofreader::settings" title="WProofreader Settings" module="WebSpellChecker_WProofreader" sortOrder="20" action="adminhtml/system_config/edit/section/webspellcheker_wproofreader" parent="WebSpellChecker_WProofreader::webspellchecker_wproofreader" resource="WebSpellChecker_WProofreader::settings" />
+    </menu>
+</config>
